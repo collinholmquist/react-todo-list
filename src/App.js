@@ -3,15 +3,47 @@ import TodoItem from './TodoItem'
 import './App.css'
 import todosData from './todosData'
 
-function App() {
-  
-  const todoComponents = todosData.map(item => <TodoItem key = {item.id} item={item} />) 
+class App extends React.Component{
 
-  return (
-    <div className = "todo-list">
-        {todoComponents} 
-    </div>
-  )
+  constructor() {
+    super()
+    this.state ={
+        todos: todosData
+    }
+    this.handleChange = this.handleChange.bind(this)
+  }
+
+  handleChange(id) {
+      this.setState(prevState => {
+        const updatedTodos = prevState.todos.map(todo => {
+          if(todo.id === id) {
+            return {
+              ...todo, 
+              completed: !todo.completed
+            }
+          }
+          return todo
+        })
+
+        return {
+          todos: updatedTodos
+           
+        }
+      })
+  }
+  
+  render() {
+   
+    const todoComponents = this.state.todos.map(item => <TodoItem key = {item.id} handleChange ={this.handleChange} item={item} />) 
+
+    return (
+        <div className = "todo-list">
+            {todoComponents} 
+        </div>
+        )
+    } 
+
 }
+  
 
 export default App;
