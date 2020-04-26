@@ -2,7 +2,17 @@
 body {
   margin: 0; 
   background-color: #cecece;
+  
 }
+
+h1 {
+  margin: auto;
+  width: 50%;
+  text-align: center;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+}
+
 .todo-list{
   background-color: white;
   margin: auto;
